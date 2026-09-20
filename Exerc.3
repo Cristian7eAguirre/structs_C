@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+typedef struct {
+    char nome[50];
+    int matricula;
+    float nota1;
+    float nota2;
+} Aluno;
+
+int main() {
+    Aluno alunos[3];
+    int i;
+
+    printf("Dados do aluno: nome (sem espacos), matricula, nota1, nota2\n");
+
+    for (i = 0; i < 3; i++) {
+        printf("Informe os dados do aluno (%d): ", i + 1);
+        scanf("%s %d %f %f", alunos[i].nome, &alunos[i].matricula, &alunos[i].nota1, &alunos[i].nota2);
+    }
+
+    printf("\n%-12s %-15s %-7s\n", "Matricula", "Nome", "Media");
+    for (i = 0; i < 3; i++) {
+        float media = (alunos[i].nota1 + + alunos[i].nota2) / 2.0;
+        printf("%-12d %-15s %-7.2f\n", alunos[i].matricula, alunos[i].nome, media);
+    }
+
+    return 0;
+}

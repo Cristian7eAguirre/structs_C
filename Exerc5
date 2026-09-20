@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+typedef struct {
+    float real;
+    float imag;
+} Complexo;
+
+void Atribui(Complexo *c, float r, float i) {
+    c->real = r;
+    c->imag = i;
+}
+
+void Imprime(Complexo c) {
+    if (c.imag >= 0)
+        printf("%.2f + %.2fi\n", c.real, c.imag);
+    else
+        printf("%.2f - %.2fi\n", c.real, -c.imag);
+}
+
+void Copia(Complexo *dest, Complexo orig) {
+    dest->real = orig.real;
+    dest->imag = orig.imag;
+}
+
+Complexo Soma(Complexo c1, Complexo c2) {
+    Complexo res;
+    res.real = c1.real + c2.real;
+    res.imag = c1.imag + c2.imag;
+    return res;
+}
+
+bool EhReal(Complexo c) {
+    return (c.imag == 0.0);
+}
+
+// Programa principal de testes
+int main(void) {
+    Complexo n1, n2, n3, n4;
+
+    Atribui(&n1, 3.5, 2.0);
+    Atribui(&n2, 1.5, -4.0);
+
+    printf("Numero 1: ");
+    Imprime(n1);
+
+    printf("Numero 2: ");
+    Imprime(n2);
+
+    n3 = Soma(n1, n2);
+    printf("Soma (n1 + n2): ");
+    Imprime(n3);
+
+    Copia(&n4, n1);
+    printf("Copia de n1 em n4: ");
+    Imprime(n4);
+
+    Complexo n_real;
+    Atribui(&n_real, 5.0, 0.0);
+    printf("n_real é puramente real? %s\n", EhReal(n_real) ? "Sim" : "Nao");
+    printf("n1 é puramente real? %s\n", EhReal(n1) ? "Sim" : "Nao");
+
+    return 0;
+}

@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+typedef struct {
+    int inscricao;
+    char nome[50];
+    int class;;
+    float horas_normais;
+    float horas_extras;
+} FICHA;
+
+int main () {
+    FICHA cadastro[100];
+    int n, i;
+    float salario_ref;
+
+    printf("Informe o salario de referencia:");
+    scanf("%f", &salario_ref);
+
+    printf("Informe a quantidade de funcionarios a cadastrar (max 100):");
+    scanf("%d", &n);
+
+    //Leitura dos dados
+
+    for (i = 0; i < n; i++){
+        printf("\n--- Cadastrando Funcionario %d ---\n", i + 1);
+        printf("Inscricao:");
+        scanf("%d", &cadastro[i].inscricao);
+
+        printf("Nome:");
+        scanf("%s", cadastro[i].nome);
+
+        printf("Classe (1 ou 2):");
+        scanf("%d, cadastro[i].classe");
+
+        printf("Horas Normais Trabalhadas:");
+        scanf("%f", &cadastro[i].horas_normais);
+
+        printf("Horas Extras Trabalhadas:");
+        scanf("%f", &cadastro[i].horas_extras);
+}
+
+printf("\n========================================");
+printf("\n        EMISSAO DE CONTRACHEQUES        ");
+printf("\n========================================\n");
+
+for ( i = 0; i < n; i++) {
+    float valor_hora_normal= 0.0;
+
+    if (cadastro[i].class ==1){
+        valor_hora_normal=salario_ref *1.3;
+    }else if (cadastro[i].class == 2){
+        valor_hora_normal=salario_ref * 1.9;
+    }
+    
+    float valor_hora_extra=valor_hora_normal * 1.30;
+
+    float sal_normais = cadastro[i].horas_normais * valor_hora_normal;
+    float sal_extras = cadastro[i].horas_extras * valor_hora_extra;
+    float sal_bruto = sal_normais + sal_extras;
+    float inss = sal_bruto *0.11;
+    float sal_liquido = sal_bruto - inss;
+
+    printf("\nNÚMERO DE INSCRIÇÃO: %d\n", cadastro[i].inscricao);
+    printf("NOME: %s\n", cadastro[i].nome);
+    printf("SALÁRIO HORAS NORMAIS: R$ %.2f\n", sal_normais);
+    printf("SALÁRIO HORAS EXTRAS: R$ %.2f\n", sal_extras);
+    printf("DEDUÇÃO INSS: R$ %.2f\n", inss);
+    printf("SALÁRIO LÍQUIDO: R$.2f\n, sal_liquido");
+    printf("----------------------------------------\n");
+}
+
+return 0;
+    
+}

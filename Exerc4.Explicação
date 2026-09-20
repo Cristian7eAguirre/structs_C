@@ -1,0 +1,3 @@
+As funções VerificaNum e ConsultaSaldo devem estar no TAD "ContaBancaria" para respeitar os princípios de extrair dados.
+O TAD "banco" gerencia uma coleção de contas, mas não deve manipular a estrutura interna dos membros (numero ou saldo) de uma conta individual diretamente.
+As operações que acessam os dados de um elemento individual pertencem à interface do próprio tipo base;

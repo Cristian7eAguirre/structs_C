@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char nome[50];
+    char estilo[30];
+    int integrantes;
+    int ranking;
+} Banda;
+
+void exibe_banda(Banda *b) {
+    printf("\n--- Informações da Banda ---\n");
+    printf("Ranking: %dº lugar\n", b->ranking);
+    printf("Nome: %s\n", b->nome);
+    printf("Estilo de Música: %s\n", b->estilo);
+    printf("Número de Integrantes: %d\n", b->integrantes);
+}
+
+int main(void) {
+    Banda *bandas = (Banda *) malloc(5 * sizeof(Banda));
+    int i, posicao_desejada;
+
+    printf("=== Cadastro das Top 5 Bandas Favoritas ===\n");
+
+    for (i = 0; i < 5; i++) {
+        Banda *p = &bandas[i];
+        
+        p->ranking = i + 1;
+        
+        printf("\n--- Banda na %dª posicao do ranking ---\n", p->ranking);
+        printf("Nome da banda: ");
+        scanf("%s", p->nome);
+        
+        printf("Tipo de musica: ");
+        scanf("%s", p->estilo);
+        
+        printf("Numero de integrantes: ");
+        scanf("%d", &p->integrantes);
+    }
+
+    printf("\n=========================================");
+    printf("\n       EXIBINDO TODAS AS BANDAS          ");
+    printf("\n=========================================");
+    for (i = 0; i < 5; i++) {
+        exibe_banda(&bandas[i]);
+    }
+
+    printf("\n=========================================\n");
+    printf("Informe a posicao do ranking que deseja consultar (1 a 5): ");
+    scanf("%d", &posicao_desejada);
+
+    if (posicao_desejada >= 1 && posicao_desejada <= 5) {
+        exibe_banda(&bandas[posicao_desejada - 1]);
+    } else {
+        printf("Posição inválida! Digite um valor entre 1 e 5.\n");
+    }
+
+    free(bandas);
+    return 0;
+}
